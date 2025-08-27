@@ -1,0 +1,7 @@
+build
+lib
+libs
+*.so
+**.a
+obj
+**.tar.gz
