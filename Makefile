@@ -1,5 +1,5 @@
 
-MAKE = make -j16
+MAKE = make -j32
 
 PRE_SUBDIRS := modp_b64 piex wuffs-mirror-release-c zlib fmtlib liblog libbase libcutils libutils libutils_binder \
 			libwebp server_configurable_flags image_io libziparchive libjpeg expat dng_sdk binder libhwbinder \
@@ -7,9 +7,11 @@ PRE_SUBDIRS := modp_b64 piex wuffs-mirror-release-c zlib fmtlib liblog libbase l
 			libicuuc sqlite harfbuzz_ng freetype libultrahdr sfntly ui minikin libskia gui libinput hostgraphics \
 			hwui
 
-RUNTIME_SUBDIRS := libandroid_runtime layoutlib_jni
+RUNTIME_SUBDIRS := libandroid_runtime
 
-SUBDIRS := $(PRE_SUBDIRS) + $(RUNTIME_SUBDIRS)
+LAYOUT_SUBDIRS := layoutlib_jni
+
+SUBDIRS := $(PRE_SUBDIRS) + $(RUNTIME_SUBDIRS) + $(LAYOUT_SUBDIRS)
 
 all:
 	for dir in $(PRE_SUBDIRS); do \
@@ -33,6 +35,18 @@ all:
 	done
 
 	for dir in $(RUNTIME_SUBDIRS); \
+		do $(MAKE) -C $$dir install; \
+	done
+
+	for dir in $(LAYOUT_SUBDIRS); do \
+		$(MAKE) -C $$dir ; \
+		if [ "$$?" != "0" ]; then\
+			echo "compile $$dir fail"; \
+			exit 1 ; \
+		fi; \
+	done
+
+	for dir in $(LAYOUT_SUBDIRS); \
 		do $(MAKE) -C $$dir install; \
 	done
 

@@ -6,7 +6,7 @@ CXXFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libjpeg \
 			-DqDNGValidate=0 -DUNIX_ENV=1 -DqDNGBigEndian=0 -DqDNGThreadSafe=1 -DqDNGUseLibJPEG=1 -DqDNGUseXMP=0 \
 			-DqDNGValidateTarget=1 -DqAndroid=1 -Werror -Wsign-compare -Wno-reorder -Wframe-larger-than=20000 \
-			-Wno-unused-parameter -Wno-ignored-qualifiers -Wno-unused-but-set-variable
+			-Wno-unused-parameter -Wno-ignored-qualifiers -Wno-unused-but-set-variable -Wno-unknown-warning-option
 
 LDFLAGS := -shared -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64' -Wl,--no-undefined
 

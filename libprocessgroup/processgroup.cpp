@@ -181,12 +181,12 @@ void DropTaskProfilesResourceCaching() {
 
 bool SetProcessProfiles(uid_t uid, pid_t pid, const std::vector<std::string>& profiles) {
     return TaskProfiles::GetInstance().SetProcessProfiles(
-            uid, pid, std::span<const std::string>(profiles), false);
+            uid, pid, std::span<const std::string>(profiles.data(), profiles.size()), false);
 }
 
 bool SetProcessProfiles(uid_t uid, pid_t pid, std::initializer_list<std::string_view> profiles) {
     return TaskProfiles::GetInstance().SetProcessProfiles(
-            uid, pid, std::span<const std::string_view>(profiles), false);
+            uid, pid, std::span<const std::string_view>(profiles.begin(), profiles.end()), false);
 }
 
 bool SetProcessProfiles(uid_t uid, pid_t pid, std::span<const std::string_view> profiles) {
@@ -195,18 +195,18 @@ bool SetProcessProfiles(uid_t uid, pid_t pid, std::span<const std::string_view> 
 
 bool SetProcessProfilesCached(uid_t uid, pid_t pid, const std::vector<std::string>& profiles) {
     return TaskProfiles::GetInstance().SetProcessProfiles(
-            uid, pid, std::span<const std::string>(profiles), true);
+            uid, pid, std::span<const std::string>(profiles.data(), profiles.size()), true);
 }
 
 bool SetTaskProfiles(pid_t tid, const std::vector<std::string>& profiles, bool use_fd_cache) {
-    return TaskProfiles::GetInstance().SetTaskProfiles(tid, std::span<const std::string>(profiles),
+    return TaskProfiles::GetInstance().SetTaskProfiles(tid, std::span<const std::string>(profiles.data(), profiles.size()),
                                                        use_fd_cache);
 }
 
 bool SetTaskProfiles(pid_t tid, std::initializer_list<std::string_view> profiles,
                      bool use_fd_cache) {
     return TaskProfiles::GetInstance().SetTaskProfiles(
-            tid, std::span<const std::string_view>(profiles), use_fd_cache);
+            tid, std::span<const std::string_view>(profiles.begin(), profiles.end()), use_fd_cache);
 }
 
 bool SetTaskProfiles(pid_t tid, std::span<const std::string_view> profiles, bool use_fd_cache) {
@@ -225,11 +225,11 @@ extern "C" bool android_set_process_profiles(uid_t uid, pid_t pid, size_t num_pr
     for (size_t i = 0; i < num_profiles; i++) {
         profiles_.emplace_back(profiles[i]);
     }
-    return SetProcessProfiles(uid, pid, std::span<const std::string_view>(profiles_));
+    return SetProcessProfiles(uid, pid, std::span<const std::string_view>(profiles_.data(), profiles_.size()));
 }
 
 bool SetUserProfiles(uid_t uid, const std::vector<std::string>& profiles) {
-    return TaskProfiles::GetInstance().SetUserProfiles(uid, std::span<const std::string>(profiles),
+    return TaskProfiles::GetInstance().SetUserProfiles(uid, std::span<const std::string>(profiles.data(), profiles.size()),
                                                        false);
 }
 

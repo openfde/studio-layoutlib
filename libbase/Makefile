@@ -4,7 +4,7 @@ CC := clang
 CXX := clang++
 CXXFLAGS := -fPIC -Wall -Werror -Wextra -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../liblog/include \
-			-Wno-c99-designator -Wno-vla-cxx-extension
+			-Wno-c99-designator -Wno-vla-cxx-extension -Wno-unknown-warning-option 
 
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \

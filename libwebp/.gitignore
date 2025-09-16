@@ -20,7 +20,6 @@
 /missing
 /mkinstalldirs
 /stamp-h1
-Makefile
 Makefile.in
 examples/anim_diff
 examples/anim_dump

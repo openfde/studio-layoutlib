@@ -8,7 +8,7 @@ CXXFLAGS := -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-DHWUI_NULL_GPU -DNULL_GPU_MAX_TEXTURE_SIZE=4096 -Wno-unused-private-field -Wno-unused-const-variable -Wno-unused-function\
 			-Wno-unused-parameter -Wno-non-virtual-dtor -Wno-parentheses -Werror -Wno-error=deprecated-declarations -Wunused -Wno-inconsistent-missing-override \
 			-Wunreachable-code -Wno-conversion-null -DGL_GLEXT_PROTOTYPES -DEGL_EGLEXT_PROTOTYPES -DU_USING_ICU_NAMESPACE=0 -Wno-unused-variable \
-			-Wno-unknown-attributes -Wno-ignored-attributes -Wno-unused-private-field -Wno-unused-function -Wno-vla-cxx-extension\
+			-Wno-unknown-attributes -Wno-ignored-attributes -Wno-unused-private-field -Wno-unused-function -Wno-vla-cxx-extension -Wno-unknown-warning-option \
 			-I. -I./include -I./platform/host -I./apex/include -I./jni -I./../native/libs/nativebase/include -I./../native/libs/nativewindow/include \
 			-I./../native/libs/nativedisplay/include -I./../libnativehelper/include_platform -I./../libnativehelper/include -I./../libnativehelper/header_only_include \
 			-I./../libskia -I./../libskia/linux -I./../libskia/include -I./../libskia/include/core -I./../libskia/include/android -I./../libskia/include/private \

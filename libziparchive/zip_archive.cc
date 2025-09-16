@@ -401,7 +401,7 @@ static ZipError MapCentralDirectory(const char* debug_file_name, ZipArchive* arc
   });
 
   if (auto result = FindCentralDirectoryInfo(debug_file_name, archive,
-                                             file_length, scan_buffer, &cdInfo);
+                                             file_length, std::span<uint8_t>(scan_buffer.data(), scan_buffer.size()), &cdInfo);
       result != kSuccess) {
     return result;
   }
@@ -1409,7 +1409,8 @@ static int32_t inflateImpl(const zip_archive::Reader& reader,
   } else {
     direct_writer = false;
     write_buf.resize(static_cast<size_t>(std::min(min_write_buffer_size, kBufSize)));
-    write_span = write_buf;
+    // write_span = write_buf;
+    write_span = std::span<uint8_t>(write_buf.data(), write_buf.size());
   }
 
   /*
@@ -1548,7 +1549,8 @@ static int32_t CopyEntryToWriter(MappedZipFile& mapped_zip, const ZipEntry64* en
     } else {
       max_read_size = std::min(entry->uncompressed_length, kBufSize);
       buf.resize((static_cast<size_t>(max_read_size)));
-      write_span = buf;
+      // write_span = buf;
+      write_span = std::span<uint8_t>(buf.data(), buf.size());
     }
   } else {
     max_read_size = entry->uncompressed_length;

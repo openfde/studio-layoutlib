@@ -35,7 +35,6 @@ compile_commands.json
 
 # In case someone runs cmake in the root-dir:
 /CMakeCache.txt
-/Makefile
 /include/Makefile
 /src/Makefile
 /src/jsontestrunner/Makefile

@@ -8,7 +8,8 @@ CXXFLAGS := -fPIC -Wall -Wextra -Werror -std=c++20 -stdlib=libc++ -g -D__EXPORTE
 			-I./../native/libs/arect/include -I./../fmtlib/include -I./../kernel-headers/uapi -I./../libandroid_runtime/include \
 			-I./../binder/ndk/include_cpp \
 			-Wno-unused-parameter -Wshadow -Wshadow-field-in-constructor-modified -Wshadow-uncaptured-local \
-			-DANDROID_UTILS_REF_BASE_DISABLE_IMPLICIT_CONSTRUCTION -Wno-vla-cxx-extension -Wno-missing-field-initializers
+			-DANDROID_UTILS_REF_BASE_DISABLE_IMPLICIT_CONSTRUCTION -Wno-missing-field-initializers \
+			-Wno-vla-cxx-extension -Wno-unknown-warning-option 
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \

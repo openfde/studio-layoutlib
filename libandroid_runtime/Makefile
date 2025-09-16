@@ -28,10 +28,10 @@ CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 
 LDFLAGS := -shared -lpthread -lc++ -lstdc++ -lc++abi -L./../libs -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64'
 
-LLFLAGS := -lhwui -lhwbinder -lwebp -lminikin -lsqlite -lsfntly -lskia -landroidfw -lexpat -lfmtlib -lft2 -lgui_window_info_static \
+LLFLAGS := -lhwui -lhwbinder -lminikin -lsqlite -lsfntly -lskia -lwebp -landroidfw -lexpat -lfmtlib -lft2 -lgui_window_info_static \
 			-lharfbuzz_ng -lhidlbase -lhostgraphics -licuuc -landroidicuinit -lultrahdr -limage_io -lincfs-utils -linput \
 			-ljpeg -ljsoncpp -lmodpb64 -lnativehelper -lpiex -lpng -lprocessgroup -lui-types -lziparchive -lserver_configurable_flags \
-			-lutils -lutils_binder -lwuffs_mirror_release_c -lz -lbinder -lcutils -ldng_sdk -llog -lbase \
+			-lutils -lutils_binder -lwuffs_mirror_release_c -ldng_sdk -lz -lbinder -lcutils -llog -lbase \
 			-ldl -lm -lrt -Wl,--no-undefined
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(CURDIR)/include
@@ -113,7 +113,7 @@ STATIC_LIB = $(shell find $(OUT_LIB_DIR) -name '*.a')
 			
 
 # 默认目标
-all: prepare $(TARGET) install
+all: prepare $(TARGET)
 
 # 创建必要目录
 prepare:
