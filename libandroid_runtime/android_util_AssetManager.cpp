@@ -345,9 +345,9 @@ static void NativeSetApkAssets(JNIEnv* env, jclass /*clazz*/, jlong ptr,
 
   auto assetmanager = LockAndStartAssetManager(ptr);
   if (preset) {
-    assetmanager->PresetApkAssets(std::span<AssetManager2::ApkAssetsPtr>(apk_assets.begin(), apk_assets.end()));
+    assetmanager->PresetApkAssets(std::span<AssetManager2::ApkAssetsPtr>(apk_assets.data(), apk_assets.size()));
   } else {
-    assetmanager->SetApkAssets(std::span<AssetManager2::ApkAssetsPtr>(apk_assets.begin(), apk_assets.end()), invalidate_caches);
+    assetmanager->SetApkAssets(std::span<AssetManager2::ApkAssetsPtr>(apk_assets.data(), apk_assets.size()), invalidate_caches);
   }
 }
 
