@@ -4,7 +4,7 @@ CC := clang
 CXX := clang++
 CXXFLAGS := -fPIC -Wall -Werror -Wextra -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libbase/include -I./../liblog/include -I./../libutils/include \
-			-Wno-exit-time-destructors
+			-Wno-exit-time-destructors -Wno-missing-field-initializers
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
@@ -71,6 +71,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 

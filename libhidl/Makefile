@@ -5,7 +5,7 @@ CXX := clang++
 CXXFLAGS := -fPIC -Wall -Werror -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./base/include -I./../libhwbinder/include -I./../liblog/include -I./../libbase/include -I./../libcutils/include -I./../libutils/include \
 			-I./../libsystem/include -I./transport/include -I./../hwui/include -I./../libfmq/base -I./../hwui/include \
-			-Wdocumentation -Wextra-semi -Wno-inconsistent-missing-override
+			-Wdocumentation -Wextra-semi -Wno-inconsistent-missing-override -Wno-deprecated-declarations
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
@@ -63,6 +63,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 

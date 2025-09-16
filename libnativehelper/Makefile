@@ -8,7 +8,8 @@ CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./include_jni -I./include_platform -I./../liblog/include \
-			-fvisibility=protected -std=c11
+			-fvisibility=protected -std=c11 \
+			-Wno-implicit-function-declaration
 
 LDFLAGS := -shared -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64' -Wl,--no-undefined
 
@@ -57,6 +58,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 

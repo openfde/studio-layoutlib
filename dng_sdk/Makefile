@@ -5,7 +5,9 @@ CXX := clang++
 CXXFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libjpeg \
 			-DqDNGValidate=0 -DUNIX_ENV=1 -DqDNGBigEndian=0 -DqDNGThreadSafe=1 -DqDNGUseLibJPEG=1 -DqDNGUseXMP=0 \
-			-DqDNGValidateTarget=1 -DqAndroid=1 -Werror -Wsign-compare -Wno-reorder -Wframe-larger-than=20000 -Wno-unused-parameter -Wno-ignored-qualifiers
+			-DqDNGValidateTarget=1 -DqAndroid=1 -Werror -Wsign-compare -Wno-reorder -Wframe-larger-than=20000 \
+			-Wno-unused-parameter -Wno-ignored-qualifiers -Wno-unused-but-set-variable
+
 LDFLAGS := -shared -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64' -Wl,--no-undefined
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(CURDIR)/include
@@ -113,6 +115,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 

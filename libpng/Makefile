@@ -69,6 +69,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 

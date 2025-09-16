@@ -113,7 +113,7 @@ STATIC_LIB = $(shell find $(OUT_LIB_DIR) -name '*.a')
 			
 
 # 默认目标
-all: prepare $(TARGET)
+all: prepare $(TARGET) install
 
 # 创建必要目录
 prepare:

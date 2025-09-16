@@ -4,7 +4,7 @@ CC := clang
 CXX := clang++
 CXXFLAGS := -fPIC -Wall -Werror -Wextra -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../liblog/include \
-			-Wno-c99-designator
+			-Wno-c99-designator -Wno-vla-cxx-extension
 
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
@@ -70,6 +70,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 

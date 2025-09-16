@@ -1,5 +1,5 @@
 
-MAKE = make -j32
+MAKE = make -j16
 
 PRE_SUBDIRS := modp_b64 piex wuffs-mirror-release-c zlib fmtlib liblog libbase libcutils libutils libutils_binder \
 			libwebp server_configurable_flags image_io libziparchive libjpeg expat dng_sdk binder libhwbinder \

@@ -464,7 +464,7 @@ status_t InputChannel::sendMessage(const InputMessage* msg) {
     ATRACE_NAME_IF(ATRACE_ENABLED(),
                    StringPrintf("sendMessage(inputChannel=%s, seq=0x%" PRIx32 ", type=0x%" PRIx32
                                 ")",
-                                name.c_str(), msg->header.seq, msg->header.type));
+                                name.c_str(), msg->header.seq, static_cast<uint32_t>(msg->header.type)));
     const size_t msgLength = msg->size();
     InputMessage cleanMsg;
     msg->getSanitizedCopy(&cleanMsg);
@@ -535,7 +535,7 @@ status_t InputChannel::receiveMessage(InputMessage* msg) {
         // Add an additional trace point to include data about the received message.
         std::string message = StringPrintf("receiveMessage(inputChannel=%s, seq=0x%" PRIx32
                                            ", type=0x%" PRIx32 ")",
-                                           name.c_str(), msg->header.seq, msg->header.type);
+                                           name.c_str(), msg->header.seq, static_cast<uint32_t>(msg->header.type));
         ATRACE_NAME(message.c_str());
     }
     return OK;

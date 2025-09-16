@@ -5,7 +5,8 @@ CXX := clang++
 CXXFLAGS := -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./include_pathutils -I./../libincfs-utils/include -I./../liblog/include -I./../libbase/include -I./../libutils/include -I./../native/include \
 			-I./../fmtlib/include -I./../libsystem/include -I./../libcutils/include -I./../libziparchive/include \
-			-Werror -Wno-unused-label -Wno-pessimizing-move -Wunreachable-code -DSTATIC_ANDROIDFW_FOR_TOOLS
+			-Werror -Wno-unused-label -Wno-pessimizing-move -Wunreachable-code -DSTATIC_ANDROIDFW_FOR_TOOLS \
+			-Wno-vla-cxx-extension
 
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
@@ -93,6 +94,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 

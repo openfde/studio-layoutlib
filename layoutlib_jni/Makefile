@@ -4,7 +4,8 @@ CC := clang
 CXX := clang++
 CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libbase/include -I./../libandroid_runtime/include -I./../libnativehelper/include_jni \
-			-I./../libutils/include -I./../liblog/include -I./../libsystem/include -I./../libandroid_runtime -I./../libnativehelper/include
+			-I./../libutils/include -I./../liblog/include -I./../libsystem/include -I./../libandroid_runtime -I./../libnativehelper/include \
+			-Wno-inconsistent-missing-override
 
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
@@ -55,6 +56,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(LDFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 
@@ -75,6 +77,8 @@ clean:
 	@mkdir -p $(OBJ_DIR)
 
 install:
+	@cp /usr/lib/llvm-*/lib/libc++.so.1 .
+	@cp /usr/lib/llvm-*/lib/libc++abi.so.1 .
 	@echo "build success!!"
 
 .PHONY: all prepare clean install

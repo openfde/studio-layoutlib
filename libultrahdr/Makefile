@@ -4,6 +4,7 @@ CC := clang
 CXX := clang++
 CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./lib/include -I./../libjpeg -I./../image_io/includes \
+			-Wno-unused-const-variable
 
 
 CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
@@ -59,6 +60,7 @@ prepare:
 	@mkdir -p $(OBJ_DIR)
 
 $(TARGET): $(OBJECTS) $(STATIC_LIB)
+	@mkdir -p $(OBJ_DIR)
 	$(AR) $(ARFLAGS) -o $@ $(OBJECTS) $(STATIC_LIB)
 	@echo "Built $@"
 
