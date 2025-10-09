@@ -1,8 +1,9 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./cpp/src \
 			-fstack-protector --param=ssp-buffer-size=4 \
 			-Werror -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter -Wno-missing-field-initializers \

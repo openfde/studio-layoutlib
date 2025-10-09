@@ -1,13 +1,14 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./cgrouprc_format/include -I./cgrouprc/include -I./../libbase/include -I./../jsoncpp/include \
 			-I./../libcutils/include \
 			-Wall -Werror -Wexit-time-destructors -Wno-unused-parameter -Wno-c99-designator
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 

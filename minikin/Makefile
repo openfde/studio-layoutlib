@@ -1,13 +1,14 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libutils/include -I./../libcutils/include -I./../liblog/include -I./../harfbuzz_ng/src -I./../libbase/include \
 			-I./../libicuuc/source/common -I./../libicuuc/source/i18n \
 			-Wall -Werror -Wextra -Wno-thread-safety-attributes -Wno-unknown-attributes -Wno-ignored-attributes
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 LDFLAGS := -shared -lpthread -lc++ -lstdc++ -lc++abi -L./../libs \

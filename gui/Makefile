@@ -1,14 +1,15 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../native/include -I./../libbase/include -I./../libcutils/include -I./../liblog/include -I./../libutils/include \
 			-I./../libsystem/include -I./../native/libs/math/include -I./../native/libs/arect/include -I./../libandroid_runtime/aidl \
 			-I./../binder/include -I./../binder/ndk/include_cpp
 
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 

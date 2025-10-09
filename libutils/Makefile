@@ -1,13 +1,14 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -Werror -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -Werror -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libbase/include -I./../liblog/include -I./../libcutils/include \
 			-I./../libsystem/include \
 			-Wno-exit-time-destructors -DANDROID_UTILS_REF_BASE_DISABLE_IMPLICIT_CONSTRUCTION
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 
@@ -16,7 +17,7 @@ LDFLAGS := -shared -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(CURDIR)/include
 
 AR = ar
-ARFLAGS = rcs
+ARFLAGS = rc
 
 # 目标库
 TARGET := libutils.a

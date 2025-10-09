@@ -1,14 +1,15 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../native/libs/nativebase/include -I./../native/libs/nativewindow/include -I./../native/libs/nativedisplay/include \
 			-I./../native/libs/arect/include -I./../native/libs/math/include -I./../ui/include \
 			-I./../liblog/include -I./../libcutils/include -I./../libbase/include -I./../libutils/include -I./../libsystem/include -I./../libhardware/include \
 			-Wno-unused-parameter -D"__INTRODUCED_IN(n)=" \
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 LDFLAGS := -shared -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64' -Wl,--no-undefined

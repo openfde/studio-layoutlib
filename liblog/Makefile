@@ -1,12 +1,13 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -Werror -Wextra -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -Werror -Wextra -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libbase/include -I./../libcutils/include -I./../libutils/include -I./../libsystem/include \
 			-Wno-c99-designator -Wexit-time-destructors -DLIBLOG_LOG_TAG=1006 -DANDROID_DEBUGGABLE=0 -DSNET_EVENT_LOG_TAG=1397638484 \
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 

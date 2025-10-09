@@ -1,8 +1,9 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-DEGL_EGLEXT_PROTOTYPES -DGL_GLEXT_PROTOTYPES -DATRACE_TAG=ATRACE_TAG_VIEW -D"LOG_TAG=\"HWUI\"" \
         	-fvisibility=hidden -fno-profile-sample-accurate -Wno-missing-declarations\
 			-DHWUI_NULL_GPU -DNULL_GPU_MAX_TEXTURE_SIZE=4096 -Wno-unused-private-field -Wno-unused-const-variable -Wno-unused-function\
@@ -25,7 +26,7 @@ CXXFLAGS := -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I./../libnativehelper/include_platform_header_only -I./../libultrahdr/lib/include -I./../libjpeg
 
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 LDFLAGS := -shared -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64' -Wl,--no-undefined

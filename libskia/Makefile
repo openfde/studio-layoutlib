@@ -1,8 +1,9 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./modules/skcms -I./linux -I./../native/libs/arect/include -I./../libbase/include -I./../libcutils/include -I./../liblog/include \
 			-I./../libjpeg -I./../libwebp/src/ -I./../wuffs-mirror-release-c/release/c -I./../freetype/include -I./../dng_sdk/source -I./../piex \
 			-U_FORTIFY_SOURCE -DATRACE_TAG=ATRACE_TAG_VIEW -DSKIA_DLL -DSKIA_IMPLEMENTATION=1 -D_FORTIFY_SOURCE=1 -DSK_BUILD_FOR_ANDROID \

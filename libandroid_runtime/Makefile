@@ -1,8 +1,9 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -Werror -Wextra  -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -Werror -Wextra  -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./aidl -I./../libnativehelper/include -I./../libnativehelper/include_jni -I./../libnativehelper/include_platform \
             -I./../libnativehelper/header_only_include -I./../libandroidfw/include -I./../libincfs-utils/include \
             -I./../libbase/include -I./../libcutils/include -I./../liblog/include -I./../libutils/include -I./../libsystem/include -I./../native/include \
@@ -22,11 +23,11 @@ CXXFLAGS := -fPIC -Wall -Werror -Wextra  -std=c++20 -stdlib=libc++ -g -D__EXPORT
             -D"__INTRODUCED_IN(n)=" -D__ANDROID_API__=10000 -D__HOST_JVM__
 
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 
-LDFLAGS := -shared -lpthread -lc++ -lstdc++ -lc++abi -L./../libs -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64'
+LDFLAGS := $(LDFLAGS_COMMON) -shared -lpthread -lc++ -lstdc++ -lc++abi -L./../libs -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64'
 
 LLFLAGS := -lhwui -lhwbinder -lminikin -lsqlite -lsfntly -lskia -lwebp -landroidfw -lexpat -lfmtlib -lft2 -lgui_window_info_static \
 			-lharfbuzz_ng -lhidlbase -lhostgraphics -licuuc -landroidicuinit -lultrahdr -limage_io -lincfs-utils -linput \

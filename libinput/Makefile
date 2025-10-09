@@ -1,8 +1,9 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -Wextra -Werror -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -Wextra -Werror -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../native/include -I./../liblog/include -I./../libcutils/include -I./../libbase/include -I./../libutils/include \
 			-I./../libnativehelper/include_jni -I./../libandroid_runtime/aidl -I./../binder/include -I./../native/libs/math/include \
 			-I./../native/libs/arect/include -I./../fmtlib/include -I./../kernel-headers/uapi -I./../libandroid_runtime/include \
@@ -11,7 +12,7 @@ CXXFLAGS := -fPIC -Wall -Wextra -Werror -std=c++20 -stdlib=libc++ -g -D__EXPORTE
 			-DANDROID_UTILS_REF_BASE_DISABLE_IMPLICIT_CONSTRUCTION -Wno-missing-field-initializers \
 			-Wno-vla-cxx-extension -Wno-unknown-warning-option 
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 

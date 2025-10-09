@@ -1,0 +1,16 @@
+
+USE_PHYCC_BUILD ?= 0
+
+ifeq ("$(USE_PHYCC_BUILD)","1")
+$(warning "Use PhyCC to Built")
+# export PATH=/home/fde/setup/phycc2/bin:$PATH
+# export LD_LIBRARY_PATH=/home/fde/setup/phycc2/lib:$LD_LIBRARY_PATH
+CXXFLAGS_COMMON := -fphycc-stable-opt -flto=full -O3
+CFLAGS_COMMON := -fphycc-stable-opt -flto=full -O3
+LDFLAGS_COMMON := -fphycc-stable-opt -fuse-ld=lld -flto=full
+else
+$(warning "Use Clang to Built")
+CXXFLAGS_COMMON := -O3
+CFLAGS_COMMON := -O3
+LDFLAGS_COMMON :=
+endif

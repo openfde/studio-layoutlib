@@ -1,11 +1,12 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 			-DFT_CONFIG_OPTION_USE_PNG  -DFT_CONFIG_OPTION_USE_ZLIB  -DFT_CONFIG_OPTION_SYSTEM_ZLIB -W \
 			-Wall  -Werror  -DDARWIN_NO_CARBON  -DFT2_BUILD_LIBRARY -O2 -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function \

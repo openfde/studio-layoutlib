@@ -1,14 +1,15 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++20 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./incfs_support/include -I./../libbase/include -I./../liblog/include \
 			-DZIPARCHIVE_DISABLE_CALLBACK_API=1 -DZLIB_CONST -Werror -D_FILE_OFFSET_BITS=64 -DINCFS_SUPPORT_DISABLED=1 \
 			-Wno-missing-field-initializers -Wconversion -Wno-sign-conversion -Wold-style-cast
 
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 

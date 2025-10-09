@@ -1,14 +1,15 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -Werror -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -Werror -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../liblog/include \
 			-I./../libicuuc/source/common -I./../libicuuc/source/i18n \
 			-DSQLITE_ENABLE_ICU -Wno-unused-function -Wno-unused-variable
 
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 			-I./../libicuuc/source/common -I./../libicuuc/source/i18n \
 			-DSQLITE_ENABLE_ICU -DHAVE_POSIX_FALLOCATE=1 -DNDEBUG=1 -DHAVE_USLEEP=1 -DSQLITE_HAVE_ISNAN \

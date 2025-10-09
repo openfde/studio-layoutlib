@@ -1,15 +1,16 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./include_aidl -I./ndk/include_cpp -I./../libbase/include -I./../libcutils/include -I./../liblog/include -I./../libutils/include \
 			-I./../libprocessgroup/include -I./../kernel-headers/uapi -I./../libsystem/include \
 			-Wextra -Wextra-semi -Werror -Wreorder-init-list -Wunused-const-variable -Wno-unknown-attributes -Wno-inconsistent-missing-override \
 			-Wno-c99-designator -Wno-missing-field-initializers -Wno-unused-but-set-variable -Wno-unknown-warning-option\
         	-DANDROID_BASE_UNIQUE_FD_DISABLE_IMPLICIT_CONVERSION -DANDROID_UTILS_REF_BASE_DISABLE_IMPLICIT_CONSTRUCTION -DBINDER_WITH_KERNEL_IPC
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 

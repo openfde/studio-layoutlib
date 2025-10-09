@@ -1,18 +1,19 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./../libbase/include -I./../libandroid_runtime/include -I./../libnativehelper/include_jni \
 			-I./../libutils/include -I./../liblog/include -I./../libsystem/include -I./../libandroid_runtime -I./../libnativehelper/include \
 			-Wno-inconsistent-missing-override
 
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 
-LDFLAGS := -shared -lpthread -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64'
+LDFLAGS := $(LDFLAGS_COMMON) -shared -lpthread -L./../libs -Wl,-rpath='$$ORIGIN/':'$$ORIGIN/lib64':'$$ORIGIN/../lib64':'$$ORIGIN/../../lib64':'$$ORIGIN/../../../lib64'
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(CURDIR)/include
 

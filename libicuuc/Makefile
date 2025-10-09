@@ -1,15 +1,16 @@
+include ../makefile_cfg
 
 # 编译器和标志
 CC := clang
 CXX := clang++
-CXXFLAGS := -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
+CXXFLAGS := $(CXXFLAGS_COMMON) -fPIC -Wall -std=c++17 -stdlib=libc++ -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include -I./source/common -I./source/i18n -I./../src/ndk_headers -I./../libbase/include -I./../libcutils/include \
 			-O3 -fvisibility=hidden -Wno-missing-field-initializers -Wno-sign-compare -Wno-unreachable-code-loop-increment \
 			-Wno-ambiguous-reversed-operator -Wno-deprecated-declarations -Wno-unused-parameter -Wno-unused-const-variable -Wno-unneeded-internal-declaration \
         	-D_REENTRANT -DU_COMMON_IMPLEMENTATION -DU_I18N_IMPLEMENTATION -DUCONFIG_USE_ML_PHRASE_BREAKING=1 \
 			-DUCONFIG_NO_REGULAR_EXPRESSIONS=0 -DUCONFIG_NO_COLLATION=0 -DU_DISABLE_RENAMING=1\
 
-CFLAGS := -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
+CFLAGS := $(CFLAGS_COMMON) -fPIC -Wall -g -D__EXPORTED_HEADERS__ \
 			-I. -I./include \
 
 
